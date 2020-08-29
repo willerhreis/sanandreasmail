@@ -33,6 +33,7 @@ namespace SanAndreasMail
                 options.UseInMemoryDatabase(Utility.GetConnectionString("ConnectionStrings:DefaultConnection"));
             });
 
+            services.AddMemoryCache();
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IRouteRepository, RouteRepository>();
             services.AddScoped<IRouteSectionRepository, RouteSectionRepository>();
@@ -44,22 +45,32 @@ namespace SanAndreasMail
             _cityService = serviceProvider.GetService<ICityService>();
             _context = serviceProvider.GetService<AppDbContext>();
 
-            Console.WriteLine("Loading Cities... ");
+            _context.Database.EnsureCreated();
 
-            InitDatabase();
+            Console.WriteLine("Loading System Data... ");
+
+
+            InitSystemData();
 
 
             Console.ReadKey();
         }
 
-        private static async void InitDatabase()
+        private static async void InitSystemData()
         {
 
             IEnumerable<City> cities = await _cityService.ListAsync();
 
             if (cities.Count() > 0)
+            {
+                Console.WriteLine("Cities:");
                 foreach (City city in cities)
                     Console.WriteLine(city.ToString());
+            }
+            else
+            {
+                Console.WriteLine("No cities added");
+            }
         }
 
     }

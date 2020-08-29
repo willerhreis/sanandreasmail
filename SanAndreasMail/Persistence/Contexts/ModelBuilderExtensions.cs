@@ -18,9 +18,6 @@ namespace SanAndreasMail.Persistence.Contexts
                 new City { CityId = Guid.NewGuid(), Abbreviation = "WS", Name = "Whetstone" },
                 new City { CityId = Guid.NewGuid(), Abbreviation = "BC", Name = "Bone County" }
             );
-
-            
-
         }
     }
 }
