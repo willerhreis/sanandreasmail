@@ -20,7 +20,7 @@ namespace SanAndreasMail
         private static ICityService _cityService;
         private static AppDbContext _context;
 
-        static void Main(string[] args)
+        static void Main()
         {
             try
             {
@@ -40,7 +40,6 @@ namespace SanAndreasMail
 
                 InitSystemData();
 
-
                 Console.WriteLine("-------------------------------------------");
                 Console.WriteLine("\n\nPor favor, informe o caminho do arquivo com Trechos das Rotas: ");
 
@@ -54,14 +53,19 @@ namespace SanAndreasMail
 
                 Utility.ReadFile(orderFilePath);
 
-                Console.ReadKey();
 
             }catch(Exception e)
             {
                 Console.WriteLine(e.Message);
             }
+
+            Console.ReadKey();
+
         }
 
+        /// <summary>
+        /// Load data of System
+        /// </summary>
         private static async void InitSystemData()
         {
             IEnumerable<City> cities = await _cityService.ListAsync();
