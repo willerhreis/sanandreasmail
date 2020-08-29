@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SanAndreasMail.Domain;
+using SanAndreasMail.Infra.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SanAndreasMail.Persistence.Contexts
 {
@@ -13,16 +13,28 @@ namespace SanAndreasMail.Persistence.Contexts
         public DbSet<RouteSection> RouteSections { get; set; }
 
 
+        //public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<City>().HasKey(a => a.Id);
-            builder.Entity<Route>().HasKey(a => a.Id);
-            builder.Entity<RouteSection>().HasKey(a => a.Id);
+            builder.Entity<City>().HasKey(a => a.CityId);
+            builder.Entity<City>().Property(p => p.CityId).ValueGeneratedOnAdd();
+            builder.Entity<Route>().HasKey(a => a.RouteId);
+            builder.Entity<Route>().Property(p => p.RouteId).ValueGeneratedOnAdd();
+            builder.Entity<RouteSection>().HasKey(a => a.RouteSectionId);
+            builder.Entity<RouteSection>().Property(p => p.RouteSectionId).ValueGeneratedOnAdd();
+
+            //Initiate Database with seed
+            builder.Seed();
+
             base.OnModelCreating(builder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlite("Data Source=sanandreasmail.db");
+        {
+            string db = Utility.GetConnectionString("ConnectionStrings:DefaultConnection");
+            optionsBuilder.UseInMemoryDatabase(db);
+        }
 
     }
 }

@@ -13,7 +13,7 @@ namespace SanAndreasMail.Infra
             if (city == null)
                 throw new Exception("Invalid arguments.");
 
-            city.Id = new Guid();
+            city.CityId = new Guid();
             return city;
         }
 

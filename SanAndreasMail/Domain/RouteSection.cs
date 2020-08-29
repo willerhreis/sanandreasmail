@@ -12,7 +12,7 @@ namespace SanAndreasMail.Domain
         /// <summary>
         /// Identifier of route
         /// </summary>
-        public Guid Id { get; set; }
+        public Guid RouteSectionId { get; set; }
         /// <summary>
         /// Route Origin
         /// </summary>
