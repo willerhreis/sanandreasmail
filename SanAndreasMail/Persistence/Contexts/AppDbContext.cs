@@ -12,8 +12,7 @@ namespace SanAndreasMail.Persistence.Contexts
         public DbSet<Route> Routes { get; set; }
         public DbSet<RouteSection> RouteSections { get; set; }
 
-
-        //public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options): base(options) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -32,8 +31,8 @@ namespace SanAndreasMail.Persistence.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string db = Utility.GetConnectionString("ConnectionStrings:DefaultConnection");
-            optionsBuilder.UseInMemoryDatabase(db);
+            /* string db = Utility.GetConnectionString("ConnectionStrings:DefaultConnection");
+             optionsBuilder.UseInMemoryDatabase(db);*/
         }
 
     }

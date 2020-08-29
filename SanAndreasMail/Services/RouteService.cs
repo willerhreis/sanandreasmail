@@ -1,12 +1,9 @@
 ﻿using SanAndreasMail.Domain;
-using SanAndreasMail.Domain.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SanAndreasMail.Infra
 {
-    public class RouteService : IRoute
+    public class RouteService 
     {
         /// <summary>
         /// Get the shortest of route between two cities

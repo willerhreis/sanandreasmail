@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SanAndreasMail.Domain.Respositories
 {
-    interface ICityRepository
+    public interface ICityRepository
     {
         Task<IEnumerable<City>> ListAsync();
 

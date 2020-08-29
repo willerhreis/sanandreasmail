@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SanAndreasMail.Domain.Respositories
 {
-    interface IRouteSectionRespository
+    interface IRouteSectionRepository
     {
         Task<IEnumerable<RouteSection>> ListAsync();
 

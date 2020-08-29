@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace SanAndreasMail.Persistence.Respositories
 {
 
-    public class RouteSectionRespository : BaseRepository, IRouteSectionRespository
+    public class RouteSectionRepository : BaseRepository, IRouteSectionRepository
     {
-        public RouteSectionRespository(AppDbContext context) : base(context) { }
+        public RouteSectionRepository(AppDbContext context) : base(context) { }
 
         public async Task<IEnumerable<RouteSection>> ListAsync()
         {

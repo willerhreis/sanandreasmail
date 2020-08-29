@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace SanAndreasMail.Persistence.Respositories
 {
-    public class CityRespository : BaseRepository, ICityRepository
+    public class CityRepository : BaseRepository, ICityRepository
     {
-        public CityRespository(AppDbContext context) : base(context) { }
+        public CityRepository(AppDbContext context) : base(context) { }
 
         public async Task<IEnumerable<City>> ListAsync()
         {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SanAndreasMail.Domain.Respositories
 {
-    interface IRouteRespository
+    interface IRouteRepository
     {
         Task<IEnumerable<Route>> ListAsync();
         Task<Route> AddAsync(Route city);

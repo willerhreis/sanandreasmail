@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SanAndreasMail.Domain.Interfaces
+namespace SanAndreasMail.Services
 {
-    interface IRouteSection
+    class RouteSectionService
     {
     }
 }
