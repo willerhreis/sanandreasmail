@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SanAndreasMail.Domain.Respositories
 {
-    interface IRouteRepository
+    public interface IRouteRepository
     {
         Task<IEnumerable<Route>> ListAsync();
         Task<Route> AddAsync(Route city);

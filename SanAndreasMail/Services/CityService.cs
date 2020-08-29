@@ -20,9 +20,9 @@ namespace SanAndreasMail.Services
         }
    
 
-        public Task<City> FindByIdAsync(Guid id)
+        public async Task<City> FindByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await _cityRepository.FindByIdAsync(id);
         }
 
         public async Task<IEnumerable<City>> ListAsync()
