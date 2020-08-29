@@ -30,7 +30,7 @@ namespace SanAndreasMail
 
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseInMemoryDatabase(Utility.GetConnectionString("ConnectionStrings:DefaultConnection"));
+                options.UseSqlite(Utility.GetConnectionString("ConnectionStrings:DefaultConnection"));
             });
 
             services.AddMemoryCache();
