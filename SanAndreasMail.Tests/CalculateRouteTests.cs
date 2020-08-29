@@ -28,8 +28,8 @@ namespace SanAndreasMail.Tests
 
             Route route = new Route
             {
-                Origin = city_sf,
-                Destiny = city_ws,
+                Origin = city_sf.Id,
+                Destiny = city_ws.Id,
                 Id = new Guid(),
                 //Only for test
                 TotalTravelTime = 1

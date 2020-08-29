@@ -16,11 +16,11 @@ namespace SanAndreasMail.Domain
         /// <summary>
         /// Route Origin
         /// </summary>
-        public City Origin { get; set; }
+        public Guid Origin { get; set; }
         /// <summary>
         /// Route Destiny
         /// </summary>
-        public City Destiny { get; set; }
+        public Guid Destiny { get; set; }
         /// <summary>
         /// Travel time of Between origin and destiny
         /// </summary>
