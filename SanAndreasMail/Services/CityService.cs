@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SanAndreasMail.Infra
+namespace SanAndreasMail.Services
 {
     public class CityService : ICityService
     {

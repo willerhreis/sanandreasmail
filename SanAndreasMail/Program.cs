@@ -26,39 +26,23 @@ namespace SanAndreasMail
             Console.WriteLine("----------------------------------");
 
 
-            var services = new ServiceCollection();
+            Console.WriteLine("Loading System Services... ");
+            var startUp = new StartUp();
+            startUp.ConfigureServices();
 
-            services.AddDbContext<AppDbContext>(options =>
-            {
-                options.UseInMemoryDatabase(Utility.GetConnectionString("ConnectionStrings:DefaultConnection"));
-            });
-
-            services.AddMemoryCache();
-            services.AddScoped<ICityRepository, CityRepository>();
-            services.AddScoped<IRouteRepository, RouteRepository>();
-            services.AddScoped<IRouteSectionRepository, RouteSectionRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-            services.AddScoped<ICityService, CityService>();
-
-            var serviceProvider = services.BuildServiceProvider();
-            _cityService = serviceProvider.GetService<ICityService>();
-            _context = serviceProvider.GetService<AppDbContext>();
-
+            _cityService = startUp.serviceProvider.GetService<ICityService>();
+            _context = startUp.serviceProvider.GetService<AppDbContext>();
             _context.Database.EnsureCreated();
 
             Console.WriteLine("Loading System Data... ");
 
-
             InitSystemData();
-
 
             Console.ReadKey();
         }
 
         private static async void InitSystemData()
         {
-
             IEnumerable<City> cities = await _cityService.ListAsync();
 
             if (cities.Count() > 0)
