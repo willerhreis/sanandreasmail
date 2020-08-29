@@ -12,6 +12,7 @@ namespace SanAndreasMail
             Console.WriteLine("Welcome to San Andreas Post Office");
             Console.WriteLine("----------------------------------");
 
+            Console.ReadKey();
         }
     }
 }

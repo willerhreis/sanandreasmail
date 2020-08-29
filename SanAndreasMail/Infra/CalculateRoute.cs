@@ -12,18 +12,11 @@ namespace SanAndreasMail.Infra
         /// Get the shortest of route between two cities
         /// </summary>
         /// <param name="route"></param>
-        public List<Route> GetShortestRoute(Route route)
+        public int GetShortestRoute(Route route)
         {
 
             //TODO: calculate routes and set travel time
-
-            //Only for tests
-            List<Route> listOfRoutes = new List<Route>
-            {
-                route
-            };
-
-            return listOfRoutes;
+            return route.TravelTime;
         }
     }
 }

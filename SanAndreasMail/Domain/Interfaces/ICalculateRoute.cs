@@ -11,6 +11,6 @@ namespace SanAndreasMail.Domain.Interfaces
         /// </summary>
         /// <param name="route"></param>
         /// <returns></returns>
-        List<Route> GetShortestRoute(Route route);
+        int GetShortestRoute(Route route);
     }
 }
