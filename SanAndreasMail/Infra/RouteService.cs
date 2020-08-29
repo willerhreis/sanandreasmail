@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SanAndreasMail.Infra
 {
-    public class CalculateRoute : ICalculateRoute
+    public class RouteService : IRoute
     {
         /// <summary>
         /// Get the shortest of route between two cities
@@ -15,8 +15,11 @@ namespace SanAndreasMail.Infra
         public int GetShortestRoute(Route route)
         {
 
+            if (route == null)
+                throw new Exception("Invalid arguments.");
+
             //TODO: calculate routes and set travel time
-            return route.TravelTime;
+            return route.TotalTravelTime;
         }
     }
 }

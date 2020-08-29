@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SanAndreasMail.Domain.Interfaces
 {
-    interface ICalculateRoute
+    interface IRoute
     {
         /// <summary>
         /// Get route (origin and destiny) and return the shortest route

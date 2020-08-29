@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SanAndreasMail.Domain
 {
@@ -22,8 +20,9 @@ namespace SanAndreasMail.Domain
         /// </summary>
         public City Destiny { get; set; }
         /// <summary>
-        /// Travel time of route
+        /// Total Travel time of route
         /// </summary>
-        public int TravelTime { get; set; }
+        public int TotalTravelTime { get; set; }
+
     }
 }

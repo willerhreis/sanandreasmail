@@ -22,7 +22,7 @@ namespace SanAndreasMail.Domain
         /// </summary>
         public City Destiny { get; set; }
         /// <summary>
-        /// Travel time of route
+        /// Travel time of Between origin and destiny
         /// </summary>
         public int TravelTime { get; set; }
     }

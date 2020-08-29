@@ -21,5 +21,8 @@ namespace SanAndreasMail.Domain
         /// Abbreviation of city
         /// </summary>
         public string Abbreviation { get; set; }
+
     }
+
+
 }

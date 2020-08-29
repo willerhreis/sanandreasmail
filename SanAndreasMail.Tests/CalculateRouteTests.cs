@@ -32,15 +32,15 @@ namespace SanAndreasMail.Tests
                 Destiny = city_ws,
                 Id = new Guid(),
                 //Only for test
-                TravelTime = 1
+                TotalTravelTime = 1
             };
 
             //System under test
-            var sut = new CalculateRoute();
+            var sut = new RouteService();
 
             var resultOfCalc = sut.GetShortestRoute(route);
 
-            Assert.AreEqual(route.TravelTime, resultOfCalc);
+            Assert.AreEqual(route.TotalTravelTime, resultOfCalc);
 
         }
     }
