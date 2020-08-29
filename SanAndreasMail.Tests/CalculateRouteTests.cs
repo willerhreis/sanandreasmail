@@ -14,23 +14,23 @@ namespace SanAndreasMail.Tests
         {
             City city_sf = new City
             {
-                Id = new Guid(),
+                CityId = new Guid(),
                 Abbreviation = "SF",
                 Name = "San Fierro"
             };
 
             City city_ws = new City
             {
-                Id = new Guid(),
+                CityId = new Guid(),
                 Abbreviation = "WS",
                 Name = " Whetstone "
             };
 
             Route route = new Route
             {
-                Origin = city_sf.Id,
-                Destiny = city_ws.Id,
-                Id = new Guid(),
+                Origin = city_sf.CityId,
+                Destiny = city_ws.CityId,
+                RouteId = new Guid(),
                 //Only for test
                 TotalTravelTime = 1
             };
