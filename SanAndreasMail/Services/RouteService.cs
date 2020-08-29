@@ -1,7 +1,7 @@
 ﻿using SanAndreasMail.Domain;
 using System;
 
-namespace SanAndreasMail.Infra
+namespace SanAndreasMail.Services
 {
     public class RouteService 
     {

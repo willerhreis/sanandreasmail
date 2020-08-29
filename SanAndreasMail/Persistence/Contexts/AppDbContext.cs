@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SanAndreasMail.Domain;
-using SanAndreasMail.Infra.Helpers;
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SanAndreasMail.Persistence.Contexts
 {
@@ -27,13 +24,7 @@ namespace SanAndreasMail.Persistence.Contexts
             builder.Seed();
 
             base.OnModelCreating(builder);
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            /* string db = Utility.GetConnectionString("ConnectionStrings:DefaultConnection");
-             optionsBuilder.UseInMemoryDatabase(db);*/
-        }
+        }       
 
     }
 }
