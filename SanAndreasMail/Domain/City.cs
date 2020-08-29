@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SanAndreasMail.Models
+namespace SanAndreasMail.Domain
 {
     /// <summary>
     /// Cities of state

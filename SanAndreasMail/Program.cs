@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SanAndreasMail.Domain;
+using SanAndreasMail.Infra;
+using System;
 
 namespace SanAndreasMail
 {
@@ -6,7 +8,10 @@ namespace SanAndreasMail
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine("Welcome to San Andreas Post Office");
+            Console.WriteLine("----------------------------------");
+
         }
     }
 }

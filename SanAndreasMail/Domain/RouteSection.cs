@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SanAndreasMail.Models
+namespace SanAndreasMail.Domain
 {
     /// <summary>
-    /// Route Between Cities 
+    /// Route Section Between Cities
     /// </summary>
-    public class Route
+    public class RouteSection
     {
         /// <summary>
         /// Identifier of route
