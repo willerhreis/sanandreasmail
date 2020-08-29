@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SanAndreasMail.Domain;
-using SanAndreasMail.Infra;
+using SanAndreasMail.Services;
 using System;
 
 namespace SanAndreasMail.Tests

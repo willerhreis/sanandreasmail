@@ -10,6 +10,7 @@ using SanAndreasMail.Persistence.Respositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace SanAndreasMail
 {
@@ -21,24 +22,44 @@ namespace SanAndreasMail
 
         static void Main(string[] args)
         {
-            Console.WriteLine("----------------------------------");
-            Console.WriteLine("Welcome to San Andreas Post Office");
-            Console.WriteLine("----------------------------------");
+            try
+            {
+                Console.WriteLine("-------------------------------------------");
+                Console.WriteLine("--- Bem vindo ao correio de San Andreas ---");
+                Console.WriteLine("-------------------------------------------");
+
+                Console.WriteLine("\n\nCarregando os serviços do sistema... ");
+                var startUp = new StartUp();
+                startUp.ConfigureServices();
+
+                _cityService = startUp.serviceProvider.GetService<ICityService>();
+                _context = startUp.serviceProvider.GetService<AppDbContext>();
+                _context.Database.EnsureCreated();
+
+                Console.WriteLine("Carregando os dados do sistema... ");
+
+                InitSystemData();
 
 
-            Console.WriteLine("Loading System Services... ");
-            var startUp = new StartUp();
-            startUp.ConfigureServices();
+                Console.WriteLine("-------------------------------------------");
+                Console.WriteLine("\n\nPor favor, informe o caminho do arquivo com Trechos das Rotas: ");
 
-            _cityService = startUp.serviceProvider.GetService<ICityService>();
-            _context = startUp.serviceProvider.GetService<AppDbContext>();
-            _context.Database.EnsureCreated();
+                string routesSectionFilePath = Console.ReadLine();
 
-            Console.WriteLine("Loading System Data... ");
+                Utility.ReadFile(routesSectionFilePath);
 
-            InitSystemData();
+                Console.WriteLine("\n\nPor favor, informe o caminho do arquivo de Encomendas: ");
 
-            Console.ReadKey();
+                string orderFilePath = Console.ReadLine();
+
+                Utility.ReadFile(orderFilePath);
+
+                Console.ReadKey();
+
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         private static async void InitSystemData()
@@ -47,7 +68,7 @@ namespace SanAndreasMail
 
             if (cities.Count() > 0)
             {
-                Console.WriteLine("Cities:");
+                Console.WriteLine("\n\nCidades:");
                 foreach (City city in cities)
                     Console.WriteLine(city.ToString());
             }
