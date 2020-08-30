@@ -13,6 +13,8 @@ namespace SanAndreasMail.Domain.Respositories
 
         Task<City> FindByIdAsync(Guid id);
 
+        Task<City> FindByAbbreviationAsync(string abbreviation);
+
         void Update(Guid id, City city);
        
     }

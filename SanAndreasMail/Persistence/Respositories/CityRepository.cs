@@ -35,5 +35,9 @@ namespace SanAndreasMail.Persistence.Respositories
             _context.Cities.Update(city);
         }
 
+        public async Task<City> FindByAbbreviationAsync(string abbreviation)
+        {
+            return await _context.Cities.Where(a => a.Abbreviation == abbreviation).AsTracking().FirstOrDefaultAsync();
+        }
     }
 }

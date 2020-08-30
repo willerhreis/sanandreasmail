@@ -32,10 +32,10 @@ namespace SanAndreasMail.Infra.Helpers
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns>StringBuilder with lines</returns>
-        public static StringBuilder ReadFile(string filePath)
+        public static List<string> ReadFile(string filePath)
         {
 
-            StringBuilder stringBuilder = new StringBuilder();
+            List<string> stringList = new List<string>();
 
             try
             {
@@ -49,8 +49,8 @@ namespace SanAndreasMail.Infra.Helpers
                 {
                     while ((line = sr.ReadLine()) != null)
                     {
-                        stringBuilder.Append(line);
-                        Console.WriteLine(line);
+                        stringList.Add(line);
+                        //Console.WriteLine(line);
                     }
                 }
 
@@ -60,7 +60,7 @@ namespace SanAndreasMail.Infra.Helpers
                 throw new IOException("The file could not be read: " + e.Message);
             }
 
-            return stringBuilder;
+            return stringList;
         }
 
         /// <summary>

@@ -11,6 +11,5 @@ namespace SanAndreasMail.Domain
         public Guid Origin { get; set; }
         public Guid Destiny { get; set; }
         public int TotalTravelTime { get; set; }
-
     }
 }

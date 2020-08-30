@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualBasic;
 using SanAndreasMail.Domain;
+using SanAndreasMail.Domain.Models;
 using SanAndreasMail.Domain.Respositories;
 using SanAndreasMail.Domain.Services;
 using SanAndreasMail.Infra;
@@ -11,13 +13,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SanAndreasMail
 {
     class Program
     {
 
+        private static IRouteSectionService _routeSectionService;
         private static ICityService _cityService;
+        private static IOrderService _orderService;
         private static AppDbContext _context;
 
         static void Main()
@@ -33,6 +38,8 @@ namespace SanAndreasMail
                 startUp.ConfigureServices();
 
                 _cityService = startUp.serviceProvider.GetService<ICityService>();
+                _orderService = startUp.serviceProvider.GetService<IOrderService>();
+                _routeSectionService = startUp.serviceProvider.GetService<IRouteSectionService>();
                 _context = startUp.serviceProvider.GetService<AppDbContext>();
                 _context.Database.EnsureCreated();
 
@@ -43,18 +50,27 @@ namespace SanAndreasMail
                 Console.WriteLine("-------------------------------------------");
                 Console.WriteLine("\n\nPor favor, informe o caminho do arquivo com Trechos das Rotas: ");
 
-                string routesSectionFilePath = Console.ReadLine();
+                string routeSectionsFilePath = Console.ReadLine();
 
-                Utility.ReadFile(routesSectionFilePath);
+                //TODO: Validate file pattern of route section
+                List<string> routeSectionsText = Utility.ReadFile(routeSectionsFilePath);
+
+                //Get route sections by file
+                _routeSectionService.GetRouteSections(routeSectionsText);
 
                 Console.WriteLine("\n\nPor favor, informe o caminho do arquivo de Encomendas: ");
 
                 string orderFilePath = Console.ReadLine();
 
-                Utility.ReadFile(orderFilePath);
+                //TODO: Validate file pattern of order route
+                List<string> ordersText = Utility.ReadFile(orderFilePath);
+
+                //Get orders by file
+                _orderService.GetOrders(ordersText);
 
 
-            }catch(Exception e)
+            }
+            catch(Exception e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -62,6 +78,8 @@ namespace SanAndreasMail
             Console.ReadKey();
 
         }
+
+        
 
         /// <summary>
         /// Load data of System

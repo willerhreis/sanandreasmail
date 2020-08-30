@@ -14,6 +14,8 @@ namespace SanAndreasMail.Domain.Services
         //Find city by id
         Task<City> FindByIdAsync(Guid id);
 
+        Task<City> FindByAbbreviationAsync(string abbreviation);
+
         //Update city
         Task<City> UpdateAsync(Guid id, City city);
     }

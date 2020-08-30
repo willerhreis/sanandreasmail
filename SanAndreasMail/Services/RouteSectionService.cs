@@ -1,5 +1,6 @@
 ﻿using SanAndreasMail.Domain;
 using SanAndreasMail.Domain.Respositories;
+using SanAndreasMail.Domain.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,15 +8,17 @@ using System.Threading.Tasks;
 
 namespace SanAndreasMail.Services
 {
-    public class RouteSectionService
+    public class RouteSectionService : IRouteSectionService
     {
         private readonly IRouteSectionRepository _routeSectionRepository;
+        private readonly ICityRepository _cityRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public RouteSectionService(IUnitOfWork unitOfWork,
-            IRouteSectionRepository rouSectionteRepository)
+            IRouteSectionRepository rouSectionteRepository, ICityRepository cityRepository)
         {
             _routeSectionRepository = rouSectionteRepository;
+            _cityRepository = cityRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -48,6 +51,38 @@ namespace SanAndreasMail.Services
         public Task<RouteSection> UpdateAsync(Guid id, RouteSection routeSection)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<List<RouteSection>> GetRouteSections(List<string> routeSectionsText)
+        {
+            List<RouteSection> routeSections = new List<RouteSection>();
+
+            Console.WriteLine("\nTrechos: \n");
+
+            foreach (string routeSection in routeSectionsText)
+            {
+                string[] section = routeSection.Split(' ');
+
+                string abbreviationOrigin = section[0];
+                string abbreviationDestiny = section[1];
+                int travelTime = Convert.ToInt32(section[2]);
+
+                City origin = await _cityRepository.FindByAbbreviationAsync(abbreviationOrigin);
+                City destiny = await _cityRepository.FindByAbbreviationAsync(abbreviationDestiny);
+
+                RouteSection routeSectionObj = new RouteSection
+                {
+                    Origin = origin.CityId,
+                    Destiny = destiny.CityId,
+                    TravelTime = travelTime
+                };
+
+                Console.WriteLine(origin.Name + " -- to --> " + destiny.Name + " ( " + routeSectionObj.TravelTime + " dia(s) ) ");
+
+                routeSections.Add(routeSectionObj);
+            }
+
+            return routeSections;
         }
     }
 }

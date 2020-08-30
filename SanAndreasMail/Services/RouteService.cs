@@ -1,12 +1,13 @@
 ﻿using SanAndreasMail.Domain;
 using SanAndreasMail.Domain.Respositories;
+using SanAndreasMail.Domain.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SanAndreasMail.Services
 {
-    public class RouteService 
+    public class RouteService  : IRouteService
     {
         private readonly IRouteRepository _routeRepository;
         private readonly IUnitOfWork _unitOfWork;

@@ -29,6 +29,9 @@ namespace SanAndreasMail
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IRouteSectionService, RouteSectionService>();
+            services.AddScoped<IRouteService, RouteService>();
 
             serviceProvider = services.BuildServiceProvider();
 

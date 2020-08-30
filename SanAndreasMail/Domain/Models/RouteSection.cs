@@ -11,5 +11,10 @@ namespace SanAndreasMail.Domain
         public Guid Origin { get; set; }
         public Guid Destiny { get; set; }
         public int TravelTime { get; set; }
+
+        public override string ToString()
+        {
+            return "Origin: " + this.Origin + "; Destiny: " + this.Destiny + "; Travel Time: " + this.TravelTime;
+        }
     }
 }

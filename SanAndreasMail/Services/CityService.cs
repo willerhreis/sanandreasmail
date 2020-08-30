@@ -18,7 +18,11 @@ namespace SanAndreasMail.Services
             _cityRepository = cityRepository;
             _unitOfWork = unitOfWork;
         }
-   
+
+        public async Task<City> FindByAbbreviationAsync(string abbreviation)
+        {
+            return await _cityRepository.FindByAbbreviationAsync(abbreviation);
+        }
 
         public async Task<City> FindByIdAsync(Guid id)
         {

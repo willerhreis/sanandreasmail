@@ -17,5 +17,8 @@ namespace SanAndreasMail.Domain.Services
 
         //Update route section
         Task<RouteSection> UpdateAsync(Guid id, RouteSection route);
+
+        Task<List<RouteSection>> GetRouteSections(List<string> routeSectionsText);
+
     }
 }
