@@ -29,8 +29,8 @@ namespace SanAndreasMail.Tests
 
             Order order = new Order
             {
-                Origin = city_sf.CityId,
-                Destiny = city_ws.CityId,
+                Origin = city_sf,
+                Destiny = city_ws,
             };
 
             //System under test

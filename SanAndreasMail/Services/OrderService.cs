@@ -37,13 +37,11 @@ namespace SanAndreasMail.Services
 
                 Order orderObj = new Order
                 {
-                    OriginId = origin.CityId,
-                    Origin = origin.Name,
-                    DestinyId = destiny.CityId,
-                    Destiny = destiny.Name,
+                    Origin = origin,
+                    Destiny = destiny,
                 };
 
-                Console.WriteLine(origin.Name + " ----> " + destiny.Name);
+                Console.WriteLine(" - " + origin.Name + " ----> " + destiny.Name);
 
                 orders.Add(orderObj);
             }

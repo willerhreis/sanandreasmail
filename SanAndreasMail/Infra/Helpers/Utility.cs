@@ -68,21 +68,13 @@ namespace SanAndreasMail.Infra.Helpers
         /// </summary>
         /// <param name="content"></param>
         /// <param name="filePath"></param>
-        public static void WriteFile(List<string> content, string filePath)
+        public static void WriteFile(string content, string filePath)
         {
             try
             {
-                //Delete the file before creating
-                if (File.Exists(filePath))
-                    File.Delete(filePath);
-
-                // Open the text file using a stream writer.
-                using (var sr = new StreamWriter(filePath))
+                using (StreamWriter sw = File.AppendText(filePath))
                 {
-                    foreach (string line in content)
-                    {
-                        sr.WriteLine(line);
-                    }
+                    sw.WriteLine(content);
                 }
 
             }

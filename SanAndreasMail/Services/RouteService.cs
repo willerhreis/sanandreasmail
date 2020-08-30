@@ -96,12 +96,41 @@ namespace SanAndreasMail.Services
             }
 
             //Get node origin by Order
-            Node nodeOrderOrigin = nodes.Where(a => a.Id == order.OriginId).FirstOrDefault();
-            Node nodeOrderDestiny = nodes.Where(a => a.Id == order.DestinyId).FirstOrDefault();
+            Node nodeOrderOrigin = nodes.Where(a => a.Id == order.Origin.CityId).FirstOrDefault();
+            //Get node destiny by Order
+            Node nodeOrderDestiny = nodes.Where(a => a.Id == order.Destiny.CityId).FirstOrDefault();
 
+            //Find the shortest path between origin node and destiny node
+            Node[] nodeRoutes = FindShortestPath(nodeOrderOrigin, nodeOrderDestiny);
+
+            return GetRoutesFromNodes(nodeRoutes, routeSections, cities);
+        }
+
+
+        /// <summary>
+        /// Find shortest Path between two nodes
+        /// </summary>
+        /// <param name="node1"></param>
+        /// <param name="node2"></param>
+        /// <returns></returns>
+        private Node[] FindShortestPath(Node node1, Node node2)
+        {
             IShortestPathFinder shortestPath = new Dijkstra();
-            Node[] nodeRoutes = shortestPath.FindShortestPath(nodeOrderOrigin, nodeOrderDestiny);
+            Node[] nodeRoutes = shortestPath.FindShortestPath(node1, node2);
 
+            return nodeRoutes;
+        }
+
+        /// <summary>
+        /// Get list of routes by return of Dijkstra algorithim
+        /// </summary>
+        /// <param name="nodeRoutes"></param>
+        /// <param name="routeSections"></param>
+        /// <param name="cities"></param>
+        /// <returns>list of routes</returns>
+        private List<Route> GetRoutesFromNodes(Node[] nodeRoutes, IEnumerable<RouteSection> routeSections, IEnumerable<City> cities )
+        {
+            List<Route> listOfRoutes = new List<Route>();
             for (int nodeCount = 0; nodeCount < nodeRoutes.Length - 1; nodeCount++)
             {
                 City cityOrigin = cities.Where(a => a.CityId == nodeRoutes[nodeCount].Id).FirstOrDefault();
@@ -116,10 +145,10 @@ namespace SanAndreasMail.Services
                     TotalTravelTime = routeSections.Where(a => a.Origin == cityOrigin.CityId && a.Destiny == cityDestiny.CityId).Select(t => t.TravelTime).FirstOrDefault()
                 };
 
-                listRoutes.Add(finalRoute);
+                listOfRoutes.Add(finalRoute);
             }
 
-            return listRoutes;
+            return listOfRoutes;
         }
     }
 }
