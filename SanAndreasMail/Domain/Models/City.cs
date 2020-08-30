@@ -13,7 +13,7 @@ namespace SanAndreasMail.Domain
 
         public override string ToString()
         {
-            return "Id: " + this.CityId + "; Name: " + this.Name + " (" + this.Abbreviation + ")";
+            return "Nome: " + this.Name + " (" + this.Abbreviation + ")";
         }
 
     }

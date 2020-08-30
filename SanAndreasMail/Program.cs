@@ -1,19 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualBasic;
 using SanAndreasMail.Domain;
 using SanAndreasMail.Domain.Models;
-using SanAndreasMail.Domain.Respositories;
 using SanAndreasMail.Domain.Services;
-using SanAndreasMail.Infra;
 using SanAndreasMail.Infra.Helpers;
 using SanAndreasMail.Persistence.Contexts;
-using SanAndreasMail.Persistence.Respositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SanAndreasMail
 {
@@ -30,9 +24,9 @@ namespace SanAndreasMail
         {
             try
             {
-                Console.WriteLine("-------------------------------------------");
-                Console.WriteLine("--- Bem vindo ao correio de San Andreas ---");
-                Console.WriteLine("-------------------------------------------");
+                Console.WriteLine("-----------------------------------------------------------");
+                Console.WriteLine("----------- Bem vindo ao correio de San Andreas -----------");
+                Console.WriteLine("-----------------------------------------------------------");
 
                 Console.WriteLine("\n\nCarregando os serviços do sistema... ");
                 var startUp = new StartUp();
@@ -49,7 +43,7 @@ namespace SanAndreasMail
 
                 InitSystemData();
 
-                Console.WriteLine("-------------------------------------------");
+                Console.WriteLine("-----------------------------------------------------------");
                 Console.WriteLine("\n\nPor favor, informe o caminho do arquivo com Trechos das Rotas: ");
 
                 //string routeSectionsFilePath = Console.ReadLine();
@@ -79,14 +73,22 @@ namespace SanAndreasMail
 
                     if (routes.Count > 0)
                     {
-                        Console.WriteLine("\nMelhor Rota para: " + order.Origin + " -- To --> " + order.Destiny);
+                        Console.WriteLine("----------------------------------------------------------");
+                        Console.WriteLine("\n| Melhor Rota para: " + order.Origin + " ----> " + order.Destiny);
+                        Console.WriteLine("----------------------------------------------------------");
 
+                        int totalTime = 0;
                         foreach (Route route in routes)
                         {
-                            Console.WriteLine("\n" + route.ToString());
+                            totalTime += route.TotalTravelTime;
+                            Console.WriteLine(route.ToString());
+                            Console.WriteLine("----------------------------------------------------------");
                         }
+                        Console.WriteLine("| Tempo total da rota: " + totalTime + " dia(s)                          |");
                     }
                 }
+
+                Console.WriteLine("----------------------------------------------------------");
 
             }
             catch (Exception e)
@@ -94,8 +96,9 @@ namespace SanAndreasMail
                 Console.WriteLine(e.Message);
             }
 
+            Console.WriteLine("Aperte uma tecla para sair...");
             Console.ReadKey();
-
+            System.Environment.Exit(0);
         }
 
 
@@ -113,13 +116,16 @@ namespace SanAndreasMail
 
             if (cities.Count() > 0)
             {
+                Console.WriteLine("-----------------------------------------------------------");
                 Console.WriteLine("\n\nCidades:");
+                Console.WriteLine("-----------------------------------------------------------");
+
                 foreach (City city in cities)
                     Console.WriteLine(city.ToString());
             }
             else
             {
-                Console.WriteLine("No cities added");
+                Console.WriteLine("Nenhuma cidade existente.");
             }
         }
 

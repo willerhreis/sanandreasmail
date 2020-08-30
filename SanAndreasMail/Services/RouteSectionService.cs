@@ -82,7 +82,7 @@ namespace SanAndreasMail.Services
                 await _routeSectionRepository.AddAsync(routeSectionObj);
                 await _unitOfWork.CompleteAsync();
 
-                Console.WriteLine(origin.Name + " -- to --> " + destiny.Name + " ( " + routeSectionObj.TravelTime + " dia(s) ) ");
+                Console.WriteLine(origin.Name + " ----> " + destiny.Name + " | " + routeSectionObj.TravelTime + " dia(s)");
 
                 //Add to list to return
                 routeSections.Add(routeSectionObj);

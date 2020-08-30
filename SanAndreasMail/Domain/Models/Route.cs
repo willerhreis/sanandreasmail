@@ -17,7 +17,7 @@ namespace SanAndreasMail.Domain
 
         public override string ToString()
         {
-            return "Origin: " + this.Origin.Abbreviation + "; Destiny: " + this.Destiny.Abbreviation + "; Travel Time: " + this.TotalTravelTime;
+            return "| Origem: " + this.Origin.Abbreviation + " | Destino: " + this.Destiny.Abbreviation + " | Tempo de Percurso: " + this.TotalTravelTime + " dia(s) |";
         }
     }
 }

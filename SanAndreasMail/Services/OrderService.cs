@@ -38,12 +38,12 @@ namespace SanAndreasMail.Services
                 Order orderObj = new Order
                 {
                     OriginId = origin.CityId,
-                    Origin = origin.Abbreviation,
+                    Origin = origin.Name,
                     DestinyId = destiny.CityId,
-                    Destiny = destiny.Abbreviation,
+                    Destiny = destiny.Name,
                 };
 
-                Console.WriteLine(origin.Name + " -- to --> " + destiny.Name);
+                Console.WriteLine(origin.Name + " ----> " + destiny.Name);
 
                 orders.Add(orderObj);
             }
