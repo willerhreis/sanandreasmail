@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SanAndreasMail.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,5 +17,7 @@ namespace SanAndreasMail.Domain.Services
 
         //Update route
         Task<Route> UpdateAsync(Guid id, Route route);
+
+        Task<List<Route>> GetShortestRoute(Order order);
     }
 }

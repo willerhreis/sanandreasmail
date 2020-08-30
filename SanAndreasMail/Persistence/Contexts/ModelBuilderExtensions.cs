@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SanAndreasMail.Domain;
 using System;
 
 namespace SanAndreasMail.Persistence.Contexts
 {
-    public static class ModelBuilderExtensions
+    public static class ModelBuilderExtensions 
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {

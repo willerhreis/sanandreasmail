@@ -1,21 +1,27 @@
 ﻿using SanAndreasMail.Domain;
+using SanAndreasMail.Domain.Models;
 using SanAndreasMail.Domain.Respositories;
 using SanAndreasMail.Domain.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SanAndreasMail.Services
 {
-    public class RouteService  : IRouteService
+    public class RouteService : IRouteService
     {
         private readonly IRouteRepository _routeRepository;
+        private readonly ICityRepository _cityRepository;
+        private readonly IRouteSectionRepository _routeSectionsRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public RouteService(IUnitOfWork unitOfWork,
-            IRouteRepository routeRepository)
+            IRouteRepository routeRepository, IRouteSectionRepository routeSectionsRepository, ICityRepository cityRepository)
         {
             _routeRepository = routeRepository;
+            _routeSectionsRepository = routeSectionsRepository;
+            _cityRepository = cityRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -54,14 +60,12 @@ namespace SanAndreasMail.Services
         /// Get the shortest of route between two cities
         /// </summary>
         /// <param name="route"></param>
-        public int GetShortestRoute(Route route)
+        public async Task<List<Route>> GetShortestRoute(Order order)
         {
-
-            if (route == null)
+            if (order == null)
                 throw new Exception("Invalid arguments.");
 
-            //TODO: calculate routes and set travel time
-            return route.TotalTravelTime;
+            return null;
         }
     }
 }

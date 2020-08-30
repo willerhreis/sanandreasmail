@@ -22,6 +22,7 @@ namespace SanAndreasMail
 
         private static IRouteSectionService _routeSectionService;
         private static ICityService _cityService;
+        private static IRouteService _routeService;
         private static IOrderService _orderService;
         private static AppDbContext _context;
 
@@ -40,6 +41,7 @@ namespace SanAndreasMail
                 _cityService = startUp.serviceProvider.GetService<ICityService>();
                 _orderService = startUp.serviceProvider.GetService<IOrderService>();
                 _routeSectionService = startUp.serviceProvider.GetService<IRouteSectionService>();
+                _routeService = startUp.serviceProvider.GetService<IRouteService>();
                 _context = startUp.serviceProvider.GetService<AppDbContext>();
                 _context.Database.EnsureCreated();
 
@@ -50,7 +52,9 @@ namespace SanAndreasMail
                 Console.WriteLine("-------------------------------------------");
                 Console.WriteLine("\n\nPor favor, informe o caminho do arquivo com Trechos das Rotas: ");
 
-                string routeSectionsFilePath = Console.ReadLine();
+                //string routeSectionsFilePath = Console.ReadLine();
+
+                string routeSectionsFilePath = @"D:\Projetos\Eu Programador\SanAndreasMail\ArquivosEntrada\trechos.txt";
 
                 //TODO: Validate file pattern of route section
                 List<string> routeSectionsText = Utility.ReadFile(routeSectionsFilePath);
@@ -60,17 +64,32 @@ namespace SanAndreasMail
 
                 Console.WriteLine("\n\nPor favor, informe o caminho do arquivo de Encomendas: ");
 
-                string orderFilePath = Console.ReadLine();
+                //string orderFilePath = Console.ReadLine();
+                string orderFilePath = @"D:\Projetos\Eu Programador\SanAndreasMail\ArquivosEntrada\encomendas.txt";
 
                 //TODO: Validate file pattern of order route
                 List<string> ordersText = Utility.ReadFile(orderFilePath);
 
                 //Get orders by file
-                _orderService.GetOrders(ordersText);
+                List<Order> orders = _orderService.GetOrders(ordersText).Result;
 
+                foreach (Order order in orders)
+                {
+                    var routes = _routeService.GetShortestRoute(order).Result;
+
+                    if (routes.Count > 0)
+                    {
+                        Console.WriteLine("\nMelhor Rota para: " + order.Origin + " -- To --> " + order.Destiny);
+
+                        foreach (Route route in routes)
+                        {
+                            Console.WriteLine("\n" + route.ToString());
+                        }
+                    }
+                }
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -79,7 +98,7 @@ namespace SanAndreasMail
 
         }
 
-        
+
 
         /// <summary>
         /// Load data of System
@@ -87,6 +106,10 @@ namespace SanAndreasMail
         private static async void InitSystemData()
         {
             IEnumerable<City> cities = await _cityService.ListAsync();
+
+            // Caution: Delete all rows of route section because the propose is only to show the behavior 
+            // on use a real database. This is not the best practice under any case. 
+            await _context.Database.ExecuteSqlRawAsync("DELETE FROM RouteSections");
 
             if (cities.Count() > 0)
             {

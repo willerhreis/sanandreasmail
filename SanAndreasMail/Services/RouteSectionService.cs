@@ -72,13 +72,19 @@ namespace SanAndreasMail.Services
 
                 RouteSection routeSectionObj = new RouteSection
                 {
+                    RouteSectionId = Guid.NewGuid(),
                     Origin = origin.CityId,
                     Destiny = destiny.CityId,
                     TravelTime = travelTime
                 };
 
+                //Add to database
+                await _routeSectionRepository.AddAsync(routeSectionObj);
+                await _unitOfWork.CompleteAsync();
+
                 Console.WriteLine(origin.Name + " -- to --> " + destiny.Name + " ( " + routeSectionObj.TravelTime + " dia(s) ) ");
 
+                //Add to list to return
                 routeSections.Add(routeSectionObj);
             }
 

@@ -6,7 +6,9 @@ namespace SanAndreasMail.Domain.Models
 {
     public class Order
     {
-        public Guid Origin { get; set; }
-        public Guid Destiny { get; set; }
+        public Guid OriginId { get; set; }
+        public string Origin { get; set; }
+        public Guid DestinyId { get; set; }
+        public string Destiny { get; set; }
     }
 }

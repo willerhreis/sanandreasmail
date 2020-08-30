@@ -12,6 +12,8 @@ namespace SanAndreasMail.Services
     {
         private readonly ICityRepository _cityRepository;
 
+        public OrderService() { }
+
         public OrderService(ICityRepository cityRepository)
         {
             _cityRepository = cityRepository;
@@ -35,8 +37,10 @@ namespace SanAndreasMail.Services
 
                 Order orderObj = new Order
                 {
-                    Origin = origin.CityId,
-                    Destiny = destiny.CityId
+                    OriginId = origin.CityId,
+                    Origin = origin.Abbreviation,
+                    DestinyId = destiny.CityId,
+                    Destiny = destiny.Abbreviation,
                 };
 
                 Console.WriteLine(origin.Name + " -- to --> " + destiny.Name);
