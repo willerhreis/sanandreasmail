@@ -40,7 +40,7 @@ Assim, espera-se, como no exemplo abaixo, que o sistema calcule a rota e o seu t
 
 ## Solução	
 
-Perante o exposto, a solução encontrada foi e construção de um Console Application que pudesse receber as entradas (em arquivos txt) e imprimissem a saída em um arquivo com o resultado do cálculo das rotas.
+Perante o exposto, a solução encontrada foi a construção de um projeto Console Application que pudesse receber as entradas (em arquivos txt) e imprimisse a saída em um arquivo com o resultado do cálculo das rotas.
 
 O primeiro passo então é desenhar o grafo representado para o mapa:
 
