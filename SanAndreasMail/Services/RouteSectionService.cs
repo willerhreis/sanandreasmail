@@ -70,6 +70,16 @@ namespace SanAndreasMail.Services
                 City origin = await _cityRepository.FindByAbbreviationAsync(abbreviationOrigin);
                 City destiny = await _cityRepository.FindByAbbreviationAsync(abbreviationDestiny);
 
+                if (origin == null)
+                {
+                    throw new Exception("City not found on get route section for: " + abbreviationOrigin);
+                }
+                if (destiny == null)
+                {
+                    throw new Exception("City not found on get route section for: " + abbreviationDestiny);
+                }
+
+
                 RouteSection routeSectionObj = new RouteSection
                 {
                     RouteSectionId = Guid.NewGuid(),
