@@ -69,6 +69,9 @@ namespace SanAndreasMail
 
                 string path = Console.ReadLine();
 
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
                 path += @"\rotas.txt";
 
                 if (path != "" && File.Exists(path))
