@@ -40,7 +40,7 @@ namespace SanAndreasMail.Infra.Helpers
             try
             {
                 if (!File.Exists(filePath))
-                    throw new IOException("File doesn't exist.");
+                    throw new IOException("Arquivo inexistente.");
 
                 string line = "";
 
@@ -57,7 +57,7 @@ namespace SanAndreasMail.Infra.Helpers
             }
             catch (IOException e)
             {
-                throw new IOException("The file could not be read: " + e.Message);
+                throw new IOException("O arquivo não pode ser lido: " + e.Message);
             }
 
             return stringList;
