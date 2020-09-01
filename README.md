@@ -10,7 +10,9 @@ encomendas postadas no estado.
 
 O objetivo deste projeto é demonstrar conhecimento na construção de um software aplicando boas práticas de desenvolvimento.
 
-Apesar de ser um projeto tecnicamente simples, que poderia ser realizado com apenas algumas classes e em tempo de execução, a escolha, para cumprir o objetivo, foi por utilizar camadas de serviços, repositórios e persistência em banco de dados.
+
+**Obs.:** Apesar de ser um projeto tecnicamente simples, que poderia ser realizado com apenas algumas classes e em tempo de execução, a escolha, para cumprir o objetivo, foi por utilizar camadas de serviços, repositórios e persistência em banco de dados em um projeto Console Application.
+
 
 ### O Projeto
 
@@ -32,6 +34,22 @@ Foi atribuída a cada cidade uma sigla, para facilitar a compreensão e manejo d
 
 ![alt text](https://github.com/willerhreis/sanandreasmail/blob/development/Docs/Trechos.png?raw=true)
 
+Arquivo de trechos (trechos.txt):
+```
+LS SF 1
+SF LS 2
+LS LV 1
+LV LS 1
+SF LV 2
+LV SF 2
+LS RC 1
+RC LS 2
+SF WS 1
+WS SF 2
+LV BC 1
+BC LV 1
+```
+
 A partir de então, as encomendas devem ser distribuídas e a melhor rota deve ser calculada.
 
 Assim, espera-se, como no exemplo abaixo, que o sistema calcule a rota e o seu tempo de percurso:
@@ -46,7 +64,7 @@ O primeiro passo então é desenhar o grafo representado para o mapa:
 
 ![alt text](https://github.com/willerhreis/sanandreasmail/blob/development/Docs/Grafo.png?raw=true)
 
-Uma vez definida a complexidade do Grafo, foi escolhido o algoritmo de cálculo de menor caminho, Dijkstra. (Para saber mais, consulte aqui: https://en.wikipedia.org/wiki/Dijkstra_algorithm)
+Uma vez definida a complexidade do Grafo, foi escolhido o algoritmo de cálculo de menor caminho, Dijkstra. (Para saber mais, consulte no [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra_algorithm)).
 
 Após a determinação dos nós e o carregamento dos padrões do grafo no algoritmo, temos como saída as rotas.
 
@@ -68,7 +86,7 @@ WS SF LV BC 5
 
 O projeto expõe um .exe e instrui através do console como proceder com a parametrização.
 
-Utilize os exemplos de entrada contidos neste projeto, na pasta Docs.
+Utilize os exemplos de entrada contidos neste projeto, na pasta [Docs](https://github.com/willerhreis/sanandreasmail/tree/master/Docs)
 
 ## Contribuição
 Camadas de testes assim como correções previstas para retorno de Exceptions e mensagens customizadas ainda precisam ser implementadas.
