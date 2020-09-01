@@ -1,6 +1,6 @@
 ﻿namespace SanAndreasMail.Infra.Helpers
 {
-    interface IShortestPathFinder
+    public interface IShortestPathFinder
     {
         Node[] FindShortestPath(Node from, Node to);
     }
