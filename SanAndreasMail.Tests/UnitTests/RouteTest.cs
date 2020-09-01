@@ -71,17 +71,16 @@ namespace SanAndreasMail.Tests.UnitTests
                 RouteId = Guid.Empty
             };
 
-            List<Route> routePathsReturn = new List<Route>
-            {
-                route_1, route_2
-            };
-
             //Assert
             Assert.NotNull(routePaths);
-            Assert.Empty(routePaths);
-
+            Assert.NotEmpty(routePaths);
+            
             //EXPECTED: LS - LV - BC
-            Assert.Equal(routePathsReturn, routePaths);
+            Assert.Collection(routePaths,
+               item => Assert.Equal(route_1.Origin, item.Origin),
+               item => Assert.Equal(route_2.Origin, item.Origin)
+           );
+
         }
         
         [Fact(DisplayName = "Verifica retorno da exception no método")]
